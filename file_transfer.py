@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
 __version__ = 'alpha'
 __date__ = '2018-04-22'
 __author__ = 'Ding Yi, <dingyi@dingyix.com>'
+"""
 
 import os
 import sys
