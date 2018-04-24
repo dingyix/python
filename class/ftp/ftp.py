@@ -97,8 +97,8 @@ class Connect(object):
                 remotepath = content
                 localpath = localstuff + os.sep + os.path.basename(content)
                 if data[index].startswith('-'):
-                    handler = open(localpath, 'wb').write
-                    ftp.retrbinary('RETR %s' % remotepath, handler)
+                    handler = open(localpath, 'wb')
+                    ftp.retrbinary('RETR %s' % remotepath, handler.write)
                     handler.close()
                 else:
                     list_get(remotepath, localpath)
@@ -112,8 +112,8 @@ class Connect(object):
                 if value.endswith(basename):
                     item = value
             if item.startswith('-'):
-                handle = open(localfile, 'wb').write
-                ftp.retrbinary('RETR %s' % remotefile, handle)
+                handle = open(localfile, 'wb')
+                ftp.retrbinary('RETR %s' % remotefile, handle.write)
                 handle.close()
             else:
                 list_get(remotefile, localfile)
