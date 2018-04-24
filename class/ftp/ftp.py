@@ -68,12 +68,14 @@ class Connect(object):
                 if os.path.isfile(localpath):
                     handler = open(localpath, 'rb')
                     ftp.storbinary('STOR %s' % remotepath, handler)
+                    handler.close()
                 else:
                     list_put(localpath, remotepath)
         try:
             if os.path.isfile(localfile):
                 handle = open(localfile, 'rb')
                 ftp.storbinary('STOR %s' % remotefile, handle)
+                handle.close()
             else:
                 list_put(localfile, remotefile)
         except Exception:
@@ -97,6 +99,7 @@ class Connect(object):
                 if data[index].startswith('-'):
                     handler = open(localpath, 'wb').write
                     ftp.retrbinary('RETR %s' % remotepath, handler)
+                    handler.close()
                 else:
                     list_get(remotepath, localpath)
         try:
@@ -111,6 +114,7 @@ class Connect(object):
             if item.startswith('-'):
                 handle = open(localfile, 'wb').write
                 ftp.retrbinary('RETR %s' % remotefile, handle)
+                handle.close()
             else:
                 list_get(remotefile, localfile)
         except Exception:
