@@ -22,17 +22,17 @@ class ConnectByPass(object):
 
     def command(self, instruction):
         result = ''
-        server = paramiko.SSHClient()
-        server.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        server.connect(self.ip, self.port, self.username, self.password)
-        (stdin, stdout, stderr) = server.exec_command(instruction)
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(self.ip, self.port, self.username, self.password)
+        (stdin, stdout, stderr) = ssh.exec_command(instruction)
         if len(stderr.readlines()) == 0:
             for line in stdout.readlines():
                 result += line
             return result
         else:
             print('failed to execute remote command! ')
-        server.close()
+        ssh.close()
 
     def sftp_put(self, localfile, remotefile):
         timestamp = str(int(time.time()))
