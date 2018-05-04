@@ -45,7 +45,7 @@ class Connect(object):
         ftp.connect(self.ip, self.port)
         ftp.login(self.username, self.password)
         try:
-            ftp.mkd('%s' % path)
+            ftp.mkd(path)
         except Exception:
             print('create directory failure! ')
         else:
