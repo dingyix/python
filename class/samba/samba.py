@@ -25,7 +25,7 @@ class Connect(object):
         try:
             content = 'type\tname\n----\t----\n'
             for files in samba.listPath(service_name, path)[2:]:
-                if samba.getAttributes(service_name, path + files.filename).isDirectory:
+                if samba.getAttributes(service_name, path.rstrip('/') + '/' + files.filename).isDirectory:
                     content += ('d\t%s\n' % files.filename)
                 else:
                     content += ('f\t%s\n' % files.filename)
